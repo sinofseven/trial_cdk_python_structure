@@ -9,8 +9,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "prettier -c bin/ lib/",
-    "format": "prettier -w bin/ lib/"
+    "lint": "prettier -c bin/ lib/ tests/cdk/",
+    "format": "prettier -w bin/ lib/ tests/cdk/"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
