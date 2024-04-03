@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 import pytest
+
 import utils.dataclasses as index
 
 
