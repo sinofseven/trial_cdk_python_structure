@@ -21,7 +21,7 @@ export class TrialCdkPythonStructureStack extends cdk.Stack {
     );
 
     const layerCommon = new PythonLayerVersion(this, "LayerCommon", {
-      entry: "layers/common",
+      entry: "src/layers/common",
       layerVersionName: "TrialPythonStructureCommonLayer",
       compatibleRuntimes: [Runtime.PYTHON_3_12],
       compatibleArchitectures: [Architecture.ARM_64],
@@ -29,8 +29,8 @@ export class TrialCdkPythonStructureStack extends cdk.Stack {
 
     new Function(this, "FunctionSample", {
       runtime: Runtime.PYTHON_3_12,
-      handler: "handlers/sample.handler",
-      code: Code.fromAsset(path.join(__dirname, "../src")),
+      handler: "sample.handler",
+      code: Code.fromAsset(path.join(__dirname, "../src/handlers/sample")),
       architecture: Architecture.ARM_64,
       environment: {
         SYSTEM_NAME: "system-name",
