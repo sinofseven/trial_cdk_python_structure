@@ -1,14 +1,120 @@
-# Welcome to your CDK TypeScript project
+# trial_cdk_python_structure
+## 概要
+- Pythonコードのディレクトリ構成の例
+  - 今回は2案作成した
+- CDKはリソース定義を見るために記述した
+  - CDKのディレクトリ構成は特にいじってない
 
-This is a blank project for CDK development with TypeScript.
+## ディレクトリ構成案
+1. Branch `01_utils_in_lambda_deploy_package`
+   - LambdaのDeploy Packageに全部のhandlerとutilsを入れる
+1. Branch `02_utils_in_layer`
+   - layerにutilsを入れて、handlerは全て異なるDeploy Packageにする
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## ディレクトリ構成詳細
+### Branch `01_utils_in_lambda_deploy_package`
+```bash
+./
+├── .flake8
+├── .gitignore
+├── .npmignore
+├── .prettierrc.yml
+├── bin/
+│  └── trial_cdk_python_structure.ts
+├── cdk.json
+├── jest.config.js
+├── lib/
+│  └── trial_cdk_python_structure-stack.ts
+├── Makefile
+├── package.json
+├── pyproject.toml
+├── README.md
+├── src/
+│  ├── __init__.py
+│  ├── handlers/
+│  │  ├── __init__.py
+│  │  └── sample.py
+│  └── utils/
+│     ├── __init__.py
+│     ├── aws/
+│     │  ├── __init__.py
+│     │  └── aws.py
+│     ├── dataclasses/
+│     │  ├── __init__.py
+│     │  └── load_environments.py
+│     └── logger/
+│        ├── __init__.py
+│        ├── create_logger.py
+│        ├── logging_function.py
+│        └── logging_handler.py
+├── tests/
+│  ├── cdk/
+│  │  └── trial_cdk_python_structure.test.ts
+│  └── unit/
+│     ├── conftest.py
+│     ├── fixtures/
+│     │  └── load_json/
+│     │     └── sample.json
+│     ├── handlers/
+│     │  └── test_sample.py
+│     └── utils/
+│        └── dataclass/
+│           └── test_load_environments.py
+└── tsconfig.json
+```
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+### Branch `02_utils_in_layer`
+```bash
+./
+├── .flake8
+├── .gitignore
+├── .npmignore
+├── .prettierrc.yml
+├── bin/
+│  └── trial_cdk_python_structure.ts
+├── cdk.json
+├── jest.config.js
+├── lib/
+│  └── trial_cdk_python_structure-stack.ts
+├── Makefile
+├── package.json
+├── pyproject.toml
+├── README.md
+├── src/
+│  ├── handlers/
+│  │  └── sample/
+│  │     ├── __init__.py
+│  │     └── sample.py
+│  └── layers/
+│     └── common/
+│        ├── __init__.py
+│        └── utils/
+│           ├── __init__.py
+│           ├── aws/
+│           │  ├── __init__.py
+│           │  └── aws.py
+│           ├── dataclasses/
+│           │  ├── __init__.py
+│           │  └── load_environments.py
+│           └── logger/
+│              ├── __init__.py
+│              ├── create_logger.py
+│              ├── logging_function.py
+│              └── logging_handler.py
+├── tests/
+│  ├── cdk/
+│  │  └── trial_cdk_python_structure.test.ts
+│  └── unit/
+│     ├── conftest.py
+│     ├── fixtures/
+│     │  └── load_json/
+│     │     └── sample.json
+│     ├── handlers/
+│     │  └── test_sample.py
+│     └── layers/
+│        └── common/
+│           └── utils/
+│              └── dataclasses/
+│                 └── test_load_environments.py
+└── tsconfig.json
+```
