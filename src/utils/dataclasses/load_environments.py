@@ -1,7 +1,7 @@
 import os
 from dataclasses import fields
 
-from common.logger import create_logger, logging_function
+from utils.logger import create_logger, logging_function
 
 logger = create_logger(__name__)
 

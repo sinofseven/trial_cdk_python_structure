@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from common.dataclasses import load_environments
-from common.logger import create_logger, logging_handler
+from utils.dataclasses import load_environments
+from utils.logger import create_logger, logging_handler
 
 
 @dataclass(frozen=True)
