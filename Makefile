@@ -12,10 +12,10 @@ fmt-python: \
 	fmt-python-black
 
 fmt-python-isort:
-	poetry run isort src/
+	poetry run isort src/ tests/unit/
 
 fmt-python-black:
-	poetry run black src/
+	poetry run black src/ tests/unit/
 
 lint: \
 	lint-cdk \
@@ -30,13 +30,13 @@ lint-python: \
 	lint-python-flake8
 
 lint-python-isort:
-	poetry run isort --check src/
+	poetry run isort --check src/ tests/unit/
 
 lint-python-black:
-	poetry run black --check src/
+	poetry run black --check src/ tests/unit/
 
 lint-python-flake8:
-	poetry run flake8 src/
+	poetry run flake8 src/ tests/unit/
 
 module-export: \
 	module-export-common
@@ -47,6 +47,13 @@ module-export-common:
 
 deploy:
 	npx cdk deploy
+
+test-unit:
+	AWS_ACCESS_KEY=dummy \
+	AWS_SECRET_ACCESS_KEY=dummy \
+	AWS_DEFAULT_REGION=ap-northeast-1 \
+	PYTHONPATH=src \
+	poetry run pytest -vv tests/unit
 
 .PHONY: \
 	format \

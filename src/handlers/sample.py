@@ -16,3 +16,4 @@ logger = create_logger(__name__)
 def handler(event, context):
     env = load_environments(class_dataclass=EnvironmentVariables)
     logger.info("call", data={"env": env})
+    return env
